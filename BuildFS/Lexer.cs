@@ -6,7 +6,7 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  LAPTOP-MSI
-//  DateTime: 28.03.2019 01:31:00
+//  DateTime: 28.03.2019 01:31:28
 //  UserName: krzys
 //  GPLEX input file <Lexer.l - 26.03.2019 23:24:14>
 //  GPLEX frame file <embedded resource>
