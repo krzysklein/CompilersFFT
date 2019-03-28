@@ -30,40 +30,4 @@ namespace BuildFS
             // TODO: BuildFS Generator
         }
     }
-
-    abstract class Statement
-    {
-    }
-
-    abstract class Expression
-    {
-    }
-
-    class IfStatement : Statement
-    {
-        public ConditionalExpression Condition;
-    }
-
-    class ConditionalExpression : Expression
-    {
-        public Expression LeftExpression;
-        public ConditionalOperator Operator;
-        public Expression RightExpression;
-    }
-
-    enum ConditionalOperator
-    {
-        GreaterThan,
-        // ...
-    }
-
-    class SimpleExpressionStatement : Statement
-    {
-        public Expression Expression;
-    }
-
-    class AssignmentExpression : Expression
-    {
-        // ...
-    }
 }
