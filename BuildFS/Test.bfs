@@ -1,0 +1,20 @@
+﻿src
+	app
+		modules
+			home
+				components
+				pages
+					home
+						home.component.ts|html|scss
+				home-routing.module.ts
+				home.module.ts
+			core
+				authentication
+				guards
+				interceptors
+				services
+				core.module.ts
+			shared
+				pipes
+				shared.module.ts
+	assets

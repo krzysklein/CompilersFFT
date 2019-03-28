@@ -1,0 +1,84 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <Parser.y - 26.03.2019 23:35:08>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  LAPTOP-MSI
+//  DateTime: 26.03.2019 23:35:09
+//  UserName: krzys
+// ==========================================================================
+
+
+%namespace BuildFS
+
+%union { 
+	public string Indent;
+	public string Name;
+	public NameNode NameNode;
+}
+
+%token <Name> Name
+%token <Indent> Indent
+%token Newline
+
+%type <Name> name
+
+%start lines
+
+%%
+// Warning: NonTerminal symbol "name" is unreachable
+// Error: NonTerminal symbol "name" has no productions
+// Error: There are 1 non-terminating NonTerminal Symbols
+   //  {name}
+// Warning: Terminating name fixes the following size-1 NonTerminal set
+   // {name}
+// --------------------------------------------------------------------
+
+lines
+	: /* empty */
+	| lines line Newline
+	| lines error Newline
+		{
+			yyerrok();
+		}
+	;
+
+line
+	: indents_opt names
+		{
+			System.Console.WriteLine($1);
+		}
+	;
+
+names
+	: names '|' Name
+		{
+			
+		}
+	| Name
+		{
+			new NameNode($1);
+		}
+	;
+
+indents_opt
+	: /* empty */
+	| indents
+	;
+
+indents
+	: indents indent
+	| indent
+	;
+
+indent
+	: Indent
+	;
+
+%%
+
+public Parser(Lexer lexer) : base(lexer)
+{
+}
+// ==========================================================================
+

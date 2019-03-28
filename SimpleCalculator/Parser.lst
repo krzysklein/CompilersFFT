@@ -1,0 +1,121 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <Parser.y - 26.03.2019 20:24:53>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  LAPTOP-MSI
+//  DateTime: 26.03.2019 20:24:56
+//  UserName: krzys
+// ==========================================================================
+
+
+%namespace SimpleCalculator
+
+%union { 
+	public decimal DecimalValue; 
+	public int IntValue;
+	public string IdentifierValue; 
+}
+
+%token <IntValue> IntLiteral
+%token <DecimalLiteralValue> DecimalLiteral
+%token <IdentifierValue> Identifier
+
+%type <DecimalValue> expression
+
+%left '+' '-'
+%left '*' '/'
+%left UMINUS
+
+%start statements
+
+%%
+// Error: NonTerminal symbol "LETTER" has no productions
+// Error: NonTerminal symbol "DIGIT" has no productions
+// Warning: Terminating DIGIT fixes the following size-4 NonTerminal set
+   // {expression, statement, number, DIGIT}
+// Error: There are 5 non-terminating NonTerminal Symbols
+   //  {expression, statement, LETTER, number, DIGIT}
+// Warning: Terminating LETTER fixes the following size-3 NonTerminal set
+   // {expression, statement, LETTER}
+// ----------------------------------------------------------------------
+
+statements
+	: /*empty */
+	| statements statement '\n'
+	| statements error '\n'
+		{
+			yyerrok();
+		}
+	;
+
+statement
+	: expression
+		{
+			System.Console.WriteLine($1);
+		}
+	| LETTER '=' expression
+		{
+			regs[$1] = $3;
+		}
+	;
+
+expression
+	: '(' expression ')'
+		{
+			$$ = $2;
+		}
+    | expression '*' expression
+        {
+            $$ = $1 * $3;
+        }
+    | expression '/' expression
+        {
+            $$ = $1 / $3;
+        }
+    | expression '+' expression
+        {
+            $$ = $1 + $3;
+        }
+    | expression '-' expression
+        {
+            $$ = $1 - $3;
+        }
+    | '-' expression %prec UMINUS
+        {
+            $$ = -$2;
+        }
+    | LETTER
+		{
+			$$ = regs[$1];
+		}
+    | number
+		{
+			try {
+				$$ = double.Parse(buffer.ToString());
+			} catch (FormatException) {
+				Scanner.yyerror("Illegal number \"{0}\"", buffer);
+			}
+		}
+    ;
+
+number
+	: DIGIT  
+		{ 
+			buffer = new StringBuilder();
+			buffer.Append($1);
+		}
+    | number DIGIT
+        { 
+            buffer.Append($2);
+        }
+    | number '.' DIGIT
+        { 
+            buffer.Append('.');
+            buffer.Append($3);
+        }
+    ;
+
+%%
+// ==========================================================================
+

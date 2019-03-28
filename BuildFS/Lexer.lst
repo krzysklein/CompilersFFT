@@ -1,0 +1,37 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <Lexer.l>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  LAPTOP-MSI
+//  DateTime: 26.03.2019 23:24:06
+//  UserName: krzys
+// ==========================================================================
+
+
+%namespace BuildFS
+%scannertype Lexer
+
+name					[a-zA-Z0-9-.]+
+//-----------------^
+// Error: Invalid class character: '-' must be \escaped
+// ----------------------------------------------------
+indent					\t
+newline					\n
+
+%%
+
+{name}					{ yylval.Name = yytext; return (int)Tokens.Name; }
+{indent}				{ yylval.Indent += yytext; return (int)Tokens.Indent; }
+{newline}				{ yylval.Indent = ""; return (int)Tokens.Newline; }
+
+"|"                     { return '|'; }
+
+%%
+
+public override void yyerror(string format, params object[] args)
+{
+	Console.WriteLine("Error: Line {0}: {1}", yyline, format);
+}
+// ==========================================================================
+
