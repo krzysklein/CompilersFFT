@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  LAPTOP-MSI
-//  DateTime: 26.03.2019 22:21:57
-//  UserName: krzys
-//  GPLEX input file <Lexer.l - 26.03.2019 21:46:13>
+//  Machine:  PLKRIISHK78NL
+//  DateTime: 2019-03-28 08:14:44
+//  UserName: KKLEIN
+//  GPLEX input file <Lexer.l - 2019-03-28 08:12:59>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize

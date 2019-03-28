@@ -3,10 +3,10 @@
 // (see accompanying GPPGcopyright.rtf)
 
 // GPPG version 1.5.2
-// Machine:  LAPTOP-MSI
-// DateTime: 26.03.2019 22:21:57
-// UserName: krzys
-// Input file <Parser.y - 26.03.2019 22:21:31>
+// Machine:  PLKRIISHK78NL
+// DateTime: 2019-03-28 08:14:46
+// UserName: KKLEIN
+// Input file <Parser.y - 2019-03-28 08:12:59>
 
 // options: conflicts lines gplex conflicts
 

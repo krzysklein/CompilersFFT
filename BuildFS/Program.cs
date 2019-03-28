@@ -1,4 +1,5 @@
 ﻿using BuildFS.Generators;
+using BuildFS.SyntaxTree;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,14 +21,16 @@ namespace BuildFS
 
             parser.Parse();
 
-            var generator = new PrettyPrintGenerator();
+            ISyntaxNodeVisitor generator = new PrettyPrintGenerator();
             foreach (var line in parser.LineNodes)
             {
                 line.Accept(generator);
             }
-            Console.ReadKey();
 
-            // TODO: BuildFS Generator
+#if DEBUG
+
+            Console.ReadKey();
+#endif
         }
     }
 }
